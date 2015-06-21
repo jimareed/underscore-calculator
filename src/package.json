@@ -1,0 +1,12 @@
+{
+  "name": "jimareed-underscore-calculator",
+  "private": true,
+  "version": "0.0.1",
+  "description": "underscore RPN calculator",
+  "author": "Jim Reed",
+  "dependencies": {
+    "express": "3.2.4",
+    "express-handlebars": "*",
+    "underscore": "*"
+  }
+}
