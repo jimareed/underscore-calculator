@@ -1,4 +1,8 @@
 var express = require('express');
+var exphbs = require('express-handlebars');
+var _ = require("underscore");
+
+
 var DEFAULT_PORT = 8080;
 var PORT = process.env.PORT || DEFAULT_PORT;
 var app = express();
