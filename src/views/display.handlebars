@@ -1,33 +1,90 @@
 <form id="f" onload="myFunction()">
   <br/>
+  <table border="1">
+  <tr><td>
+  <div align="center"><b>underscore-calculator</b></div>
   <table>
   <tr>
-  <td><input id="register-3" disabled="true" value=""/></td>
+  <td width="265"><input id="register-3" style="width:100%" disabled="true" value=""/></td>
   </tr>
   <tr>
-  <td><input id="register-2" disabled="true" value=""/></td>
+  <td><input id="register-2" style="width:100%" disabled="true" value=""/></td>
   </tr>
   <tr>
-  <td><input id="register-1" disabled="true" value=""/></td>
+  <td><input id="register-1" style="width:100%" disabled="true" value=""/></td>
   </tr>
   <tr>
-  <td><input id="register-0" disabled="true" value=""/></td>
+  <td><input id="register-0" style="width:100%" disabled="true" value=""/></td>
   </tr>
   <tr>
-  <td><input id="input" value=""/></td>
+  <td><input id="input" style="width:100%" value=""/></td>
   </tr>
   </table>
-  <br/>
+  </td></tr>
+  <tr><td>
+  <table>
+    <tr>
+      <td width="50"><input type="button" name="sto" style="width:100%" value="sto" onClick="store('')"/></td>
+      <td width="50"><input type="button" name="rcl" style="width:100%" value="rcl" onClick="recall('')"/></td>
+      <td width="50"><input type="button" name="swap" style="width:100%" value="swap" onClick="swap('')"/></td>
+      <td width="50"><input type="button" name="up" style="width:100%" value="up" onClick="move('up')"/></td>
+      <td width="50"><input type="button" name="rec" style="width:100%" value="rec" onClick="record('')"/></td>
+    </tr>
+    <tr>
+      <td width="50"><input type="button" name="put" style="width:100%" value="put" onClick="put('')"/></td>
+      <td width="50"><input type="button" name="get" style="width:100%" value="get" onClick="get('')"/></td>
+      <td width="50"><input type="button" name="left" style="width:100%" value="left" onClick="move('left')"/></td>
+      <td width="50"><input type="button" name="down" style="width:100%" value="down" onClick="move('down')"/></td>
+      <td width="50"><input type="button" name="right" style="width:100%" value="right" onClick="move('right')"/></td>
+    </tr>
+    <tr>
+      <td width="50"><input type="button" name="" style="width:100%" value="" onClick="calc('')"/></td>
+      <td width="50"><input type="button" name="" style="width:100%" value="" onClick="calc('')"/></td>
+      <td width="50"><input type="button" name="" style="width:100%" value="" onClick="calc('')"/></td>
+      <td width="50"><input type="button" name="" style="width:100%" value="" onClick="calc('')"/></td>
+      <td width="50"><input type="button" name="" style="width:100%" value="" onClick="calc('')"/></td>
+    </tr>
+  </table>
 	<table>
 		<tr>
-      <td>
-        <input type="button" name="enter" value="enter" onClick="calc('enter')"/>
-      </td>
-			<td>
-				<input type="button" name="uniq" value="uniq" onClick="calc('uniq')"/>
-			</td>
+      <td width="104"><input type="button" name="enter" style="width:100%" value="enter" onClick="calc('enter')"/></td>
+			<td width="50"><input type="button" name="uniq" style="width:100%" value="uniq" onClick="calc('uniq')"/></td>
+      <td width="50"><input type="button" name="pluck" style="width:100%" value="pluck" onClick="calc('pluck')"/></td>
+      <td width="50"><input type="button" name="more" style="width:100%" value="more" onClick="more()"/></td>
 		</tr>
+  </table>
+  <table>
+    <tr>
+      <td width="50"><input type="button" style="width:100%" name="[ ]" value="[ ]" onClick="add('[]')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="7" value="7" onClick="add('7')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="8" value="8" onClick="add('8')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="9" value="9" onClick="add('9')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="/" value="/" onClick="calc('divide')"/></td>
+    </tr>
+    <tr>
+      <td width="50"><input type="button" style="width:100%" name="{ }" value="{ }" onClick="add('{}')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="4" value="4" onClick="add('4')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="5" value="5" onClick="add('5')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="6" value="6" onClick="add('6')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="*" value="*" onClick="calc('multiply')"/></td>
+    </tr>
+    <tr>
+      <td width="50"><input type="button" style="width:100%" name="" value="" onClick="add('')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="1" value="1" onClick="add('1')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="2" value="2" onClick="add('2')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="3" value="3" onClick="add('3')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="-" value="-" onClick="calc('subtract')"/></td>
+    </tr>
+    <tr>
+      <td width="50"><input type="button" style="width:100%" name="" value="" onClick="add('')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="0" value="0" onClick="add('0')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="." value="." onClick="add('.')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="," value="," onClick="add(',')"/></td>
+      <td width="50"><input type="button" style="width:100%" name="+" value="+" onClick="calc('add')"/></td>
+    </tr>
 	</table>
+  </td></tr>
+  </table>
 
 </form>
 
@@ -61,9 +118,14 @@ function calc(operation) {
     window.location.assign(newpage);
 }
 
-function add() {
-    var newpage = "/add";
-    window.location.assign(newpage);
+function add(value) {
+  if (value == '[]') {
+    document.getElementById("input").value = '[ ' + document.getElementById("input").value + ' ]';
+  } else if (value == '{}') {
+    document.getElementById("input").value = '{ ' + document.getElementById("input").value + ' }';
+  } else {
+    document.getElementById("input").value += value;
+  }
 }
 
 </script>
