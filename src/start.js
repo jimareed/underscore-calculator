@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require("body-parser");
 var app = express();
 var exphbs = require('express-handlebars');
 var _ = require("underscore");
@@ -6,6 +7,8 @@ var _ = require("underscore");
 app.engine('handlebars',
 	exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
+app.use(bodyParser.json());
 
 var ds = [];
 var registers = [];
@@ -48,11 +51,9 @@ app.get('/display', function(req, res) {
 	res.render('display', { data : theData });
 });
 
-app.get('/calculate/:op', function(req, res) {
-	console.log(req.params.op);
-	console.log(ds[0]);
+app.post('/calculate/:op', function(req, res) {
+	console.log("get:" + req.params.op);
 	ds[0] = _.uniq(ds[0]);
-	console.log(ds[0]);
 	loadRegisters();
 	var theData = JSON.stringify(registers);
 	res.render('display', { data : theData });
