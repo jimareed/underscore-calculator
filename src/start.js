@@ -31,10 +31,10 @@ function loadRegisters() {
 
 }
 
-ds[0] = [1,2,3,1];
-ds[1] = [2];
-ds[2] = [3];
-ds[3] = [4];
+ds[0] = [];
+ds[1] = [];
+ds[2] = [];
+ds[3] = [];
 
 loadRegisters();
 
@@ -49,8 +49,57 @@ app.get('/display', function(req, res) {
 });
 
 app.get('/calculate/:op', function(req, res) {
-	console.log("get:" + req.params.op + "," + req.query.input);
-	ds[0] = _.uniq(ds[0]);
+
+	if (req.query.input == "") {
+		if (req.params.op == "enter") {
+			ds[3] = ds[2];
+			ds[2] = ds[1];
+			ds[1] = ds[0];
+		}
+	} else {
+		ds[3] = ds[2];
+		ds[2] = ds[1];
+		ds[1] = ds[0];
+
+		var input = req.query.input;
+		if (req.query.input.indexOf("[") == -1) {
+			ds[0] = [ req.query.input ];
+		} else {
+			ds[0] = JSON.parse(req.query.input);
+		}
+	}
+
+	if (req.params.op == "uniq") {
+		ds[0] = _.uniq(ds[0]);
+	}
+
+	if (req.params.op == "size") {
+		var size =  _.size(ds[0]);
+
+		ds[0] = [ size ];
+	}
+
+	if (req.params.op == "clear") {
+		ds[0] = ds[1];
+		ds[1] = ds[2];
+		ds[2] = ds[3];
+		ds[3] = [];
+	}
+
+	if (req.params.op == "r-down") {
+		var temp = ds[0];
+		ds[0] = ds[1];
+		ds[1] = ds[2];
+		ds[2] = ds[3];
+		ds[3] = temp;
+	}
+
+	if (req.params.op == "x-y") {
+		var temp = ds[1];
+		ds[1] = ds[0];
+		ds[0] = temp;
+	}
+
 	loadRegisters();
 	var theData = JSON.stringify(registers);
 	res.render('display', { data : theData });
