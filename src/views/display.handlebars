@@ -1,91 +1,104 @@
-<form id="f" onload="myFunction()">
+<form id="f" onload="myFunction()" >
   <br/>
   <table border="1">
   <tr><td>
   <div align="center"><b>underscore-calculator</b></div>
   <table>
   <tr>
-  <td width="265"><input id="register-3" style="width:100%" disabled="true" value=""/></td>
+  <td width="516"><input type="button" id="register-3" class="registers" value=""/></td>
   </tr>
   <tr>
-  <td><input id="register-2" style="width:100%" disabled="true" value=""/></td>
+  <td><input id="register-2" type="button" class="registers" value=""/></td>
   </tr>
   <tr>
-  <td><input id="register-1" style="width:100%" disabled="true" value=""/></td>
+  <td><input id="register-1" type="button" class="registers" value=""/></td>
   </tr>
   <tr>
-  <td><input id="register-0" style="width:100%" disabled="true" value=""/></td>
+  <td><input id="register-0" type="button" class="registers" value=""/></td>
   </tr>
   <tr>
-  <td><input id="input" style="width:100%" value=""/></td>
+  <td><input id="input" class="buttons" value=""/></td>
   </tr>
   </table>
   </td></tr>
   <tr><td>
   <table>
     <tr>
-      <td width="50"><input type="button" name="sto" style="width:100%" value="sto" onClick="store('')"/></td>
-      <td width="50"><input type="button" name="rcl" style="width:100%" value="rcl" onClick="recall('')"/></td>
-      <td width="50"><input type="button" name="swap" style="width:100%" value="swap" onClick="swap('')"/></td>
-      <td width="50"><input type="button" name="up" style="width:100%" value="up" onClick="move('up')"/></td>
-      <td width="50"><input type="button" name="rec" style="width:100%" value="rec" onClick="record('')"/></td>
+      <td width="100"><input type="button" name="load" class="buttons" value="load" onClick="calc('load')"/></td>
+      <td width="100"><input type="button" name="save" class="buttons" value="save" onClick="calc('save')"/></td>
+      <td width="100"><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td width="100"><input type="button" name="r-down" class="buttons" value="r-down" onClick="calc('r-down')"/></td>
+      <td width="100"><input type="button" name="x-y" class="buttons" value="x-y" onClick="calc('x-y')"/></td>
     </tr>
     <tr>
-      <td width="50"><input type="button" name="put" style="width:100%" value="put" onClick="put('')"/></td>
-      <td width="50"><input type="button" name="get" style="width:100%" value="get" onClick="get('')"/></td>
-      <td width="50"><input type="button" name="left" style="width:100%" value="left" onClick="move('left')"/></td>
-      <td width="50"><input type="button" name="down" style="width:100%" value="down" onClick="move('down')"/></td>
-      <td width="50"><input type="button" name="right" style="width:100%" value="right" onClick="move('right')"/></td>
+      <td><input type="button" name="recall" class="buttons" value="recall" onClick="calc('recall')"/></td>
+      <td><input type="button" name="store" class="buttons" value="store" onClick="calc('store')"/></td>
+      <td><input type="button" name="swap" class="buttons" value="swap" onClick="calc('swap')"/></td>
+      <td><input type="button" name="up" class="buttons" value="up" onClick="calc('up')"/></td>
+      <td><input type="button" name="rec" class="buttons" value="record" onClick="calc('record')"/></td>
     </tr>
     <tr>
-      <td width="50"><input type="button" name="diff" style="width:100%" value="diff" onClick="calc('diff')"/></td>
-      <td width="50"><input type="button" name="union" style="width:100%" value="union" onClick="calc('union')"/></td>
-      <td width="50"><input type="button" name="sort" style="width:100%" value="sort" onClick="calc('sort')"/></td>
-      <td width="50"><input type="button" name="" style="width:100%" value="" onClick="calc('')"/></td>
-      <td width="50"><input type="button" name="" style="width:100%" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="get" class="buttons" value="get" onClick="calc('get')"/></td>
+      <td><input type="button" name="put" class="buttons" value="put" onClick="calc('put')"/></td>
+      <td><input type="button" name="left" class="buttons" value="left" onClick="calc('left')"/></td>
+      <td><input type="button" name="down" class="buttons" value="down" onClick="calc('down')"/></td>
+      <td><input type="button" name="right" class="buttons" value="right" onClick="calc('right')"/></td>
+    </tr>
+    <tr>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+    </tr>
+    <tr>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
     </tr>
   </table>
 	<table>
 		<tr>
-      <td width="104"><input type="button" name="enter" style="width:100%" value="enter" onClick="calc('enter')"/></td>
-			<td width="50"><input type="button" name="uniq" style="width:100%" value="uniq" onClick="calc('uniq')"/></td>
-      <td width="50"><input type="button" name="pluck" style="width:100%" value="pluck" onClick="calc('pluck')"/></td>
-      <td width="50"><input type="button" name="more" style="width:100%" value="more" onClick="more()"/></td>
+      <td width="204"><input type="button" name="enter" class="buttons" value="enter" onClick="calc('enter')"/></td>
+			<td width="100"><input type="button" name="uniq" class="buttons" value="uniq" onClick="calc('uniq')"/></td>
+      <td width="100"><input type="button" name="pluck" class="buttons" value="pluck" onClick="calc('pluck')"/></td>
+      <td width="100"><input type="button" name="function" class="buttons" value="function" onClick="calc('function')"/></td>
 		</tr>
   </table>
   <table>
     <tr>
-      <td width="50"><input type="button" style="width:100%" name="[ ]" value="[ ]" onClick="add('[]')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="7" value="7" onClick="add('7')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="8" value="8" onClick="add('8')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="9" value="9" onClick="add('9')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="/" value="/" onClick="calc('divide')"/></td>
+      <td width="100"><input type="button" class="buttons" name="[ ]" value="[ ]" onClick="add('[]')"/></td>
+      <td width="100"><input type="button" class="buttons" name="7" value="7" onClick="add('7')"/></td>
+      <td width="100"><input type="button" class="buttons" name="8" value="8" onClick="add('8')"/></td>
+      <td width="100"><input type="button" class="buttons" name="9" value="9" onClick="add('9')"/></td>
+      <td width="100"><input type="button" class="buttons" name="/" value="/" onClick="calc('divide')"/></td>
     </tr>
     <tr>
-      <td width="50"><input type="button" style="width:100%" name="{ }" value="{ }" onClick="add('{}')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="4" value="4" onClick="add('4')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="5" value="5" onClick="add('5')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="6" value="6" onClick="add('6')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="*" value="*" onClick="calc('multiply')"/></td>
+      <td><input type="button" class="buttons" name="{ }" value="{ }" onClick="add('{}')"/></td>
+      <td><input type="button" class="buttons" name="4" value="4" onClick="add('4')"/></td>
+      <td><input type="button" class="buttons" name="5" value="5" onClick="add('5')"/></td>
+      <td><input type="button" class="buttons" name="6" value="6" onClick="add('6')"/></td>
+      <td><input type="button" class="buttons" name="*" value="*" onClick="calc('multiply')"/></td>
     </tr>
     <tr>
-      <td width="50"><input type="button" style="width:100%" name="" value="" onClick="add('')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="1" value="1" onClick="add('1')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="2" value="2" onClick="add('2')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="3" value="3" onClick="add('3')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="-" value="-" onClick="calc('subtract')"/></td>
+      <td><input type="button" class="buttons" name="" value="" onClick="add('')"/></td>
+      <td><input type="button" class="buttons" name="1" value="1" onClick="add('1')"/></td>
+      <td><input type="button" class="buttons" name="2" value="2" onClick="add('2')"/></td>
+      <td><input type="button" class="buttons" name="3" value="3" onClick="add('3')"/></td>
+      <td><input type="button" class="buttons" name="-" value="-" onClick="calc('subtract')"/></td>
     </tr>
     <tr>
-      <td width="50"><input type="button" style="width:100%" name="" value="" onClick="add('')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="0" value="0" onClick="add('0')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="." value="." onClick="add('.')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="," value="," onClick="add(',')"/></td>
-      <td width="50"><input type="button" style="width:100%" name="+" value="+" onClick="calc('add')"/></td>
+      <td><input type="button" class="buttons" name="" value="" onClick="add('')"/></td>
+      <td><input type="button" class="buttons" name="0" value="0" onClick="add('0')"/></td>
+      <td><input type="button" class="buttons" name="." value="." onClick="add('.')"/></td>
+      <td><input type="button" class="buttons" name="," value="," onClick="add(',')"/></td>
+      <td><input type="button" class="buttons" name="+" value="+" onClick="calc('add')"/></td>
     </tr>
 	</table>
   </td></tr>
   </table>
-
 </form>
 
 <script>
