@@ -7,7 +7,6 @@
   "dependencies": {
     "express": "*",
     "express-handlebars": "*",
-    "underscore": "*",
-    "body-parser": "*"
+    "underscore": "*"
   }
 }

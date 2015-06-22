@@ -1,4 +1,4 @@
-<form id="calculator" onload="myFunction()" action="calculate/enter" enctype="application/json" method="post">
+<form id="calculator" onload="myFunction()">
   <br/>
   <table border="1">
   <tr><td>
@@ -61,7 +61,7 @@
   </table>
 	<table>
 		<tr>
-      <td width="204"><input type="submit" name="enter" class="buttons" value="enter" /></td>
+      <td width="204"><input type="button" name="enter" class="buttons" value="enter" onClick="calc('enter')"/></td>
 			<td width="100"><input type="button" name="uniq" class="buttons" value="uniq" onClick="calc('uniq')"/></td>
       <td width="100"><input type="button" name="pluck" class="buttons" value="pluck" onClick="calc('pluck')"/></td>
       <td width="100"><input type="button" name="function" class="buttons" value="function" onClick="calc('function')"/></td>
@@ -126,14 +126,9 @@ function display() {
 	}
 }
 
-function calc2(operation) {
-    var newpage = "/calculate/" + operation;
-    window.location.assign(newpage);
-}
-
 function calc(operation) {
-    document.getElementById("calculator").action = "/calculate/" + operation;
-    document.getElementById("calculator").submit();
+    var newpage = "/calculate/" + operation + "?input=" + document.getElementById("input").value;
+    window.location.assign(newpage);
 }
 
 function add(value) {
