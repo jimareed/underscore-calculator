@@ -8,8 +8,13 @@ ds[1] = [];
 ds[2] = [];
 ds[3] = [];
 
-module.exports = {
-  evaluate: function(operation,value) {
+var response = [{ country:"China-t" , population:1343 } ,
+              { country:"India" , population:1205 } ,
+              { country:"United States" , population:314 } ,
+              { country:"Brazil" , population:194 }];
+
+
+function evaluateOperation(operation,value) {
 
     if (value == "") {
       if (operation == "enter") {
@@ -80,6 +85,43 @@ module.exports = {
     }
 
     return registers;
+  }
+
+
+module.exports = {
+
+  recall: function(name) {
+    console.log("recall " + name);
+    var input = JSON.stringify(response);
+    var theRegisters = evaluateOperation("enter",input);
+
+    return theRegisters;
+  },
+
+  store: function(name) {
+    console.log("store " + name);
+    var theRegisters = evaluateOperation("","");
+
+    return theRegisters;
+  },
+
+  record: function(name) {
+    console.log("record " + name);
+    var theRegisters = evaluateOperation("","");
+
+    return theRegisters;
+  },
+
+  play: function(name) {
+    console.log("play " + name);
+    var theRegisters = evaluateOperation("","");
+
+    return theRegisters;
+  },
+
+  evaluate: function(operation,value) {
+
+    return evaluateOperation(operation,value);
   }
 
 };

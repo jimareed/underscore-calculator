@@ -3,11 +3,6 @@ var app = express();
 var exphbs = require('express-handlebars');
 var calculator = require('./calculator');
 
-var response = [{ country:"China" , population:1343 } ,
-              { country:"India" , population:1205 } ,
-              { country:"United States" , population:314 } ,
-              { country:"Brazil" , population:194 }];
-
 app.engine('handlebars',
 	exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -29,16 +24,26 @@ app.get('/underscore-calculator/calculate/:op', function(req, res) {
 });
 
 app.get('/underscore-calculator/recall/:name', function(req, res) {
-	console.log("recall " + req.params.name);
-	var input = JSON.stringify(response);
-	var theRegisters = calculator.evaluate("enter",input);
+	var theRegisters = calculator.recall(req.params.name);
 	var theData = JSON.stringify(theRegisters);
 	res.render('display', { data : theData });
 });
 
 app.get('/underscore-calculator/store/:name', function(req, res) {
-	console.log("store " + req.params.name);
-	var theData = JSON.stringify(calculator.evaluate("", ""));
+	var theRegisters = calculator.store(req.params.name);
+	var theData = JSON.stringify(theRegisters);
+	res.render('display', { data : theData });
+});
+
+app.get('/underscore-calculator/record/:name', function(req, res) {
+	var theRegisters = calculator.record(req.params.name);
+	var theData = JSON.stringify(theRegisters);
+	res.render('display', { data : theData });
+});
+
+app.get('/underscore-calculator/play/:name', function(req, res) {
+	var theRegisters = calculator.play(req.params.name);
+	var theData = JSON.stringify(theRegisters);
 	res.render('display', { data : theData });
 });
 
