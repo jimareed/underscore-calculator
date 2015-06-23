@@ -23,12 +23,6 @@ app.get('/underscore-calculator/calculate/:op', function(req, res) {
 	res.render('display', { data : theData });
 });
 
-app.get('/calculate/:op', function(req, res) {
-	var theRegisters = calculator.evaluate(req.params.op,req.query.input);
-	var theData = JSON.stringify(theRegisters);
-	res.render('display', { data : theData });
-});
-
 app.use(express.static('public'));
 
 var port = Number(process.env.PORT || 8080);
