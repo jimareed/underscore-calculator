@@ -12,6 +12,17 @@ app.get('/', function(req, res) {
 	res.render('display', { data : theData });
 });
 
+app.get('/underscore-calculator', function(req, res) {
+	var theData = JSON.stringify(calculator.evaluate("", ""));
+	res.render('display', { data : theData });
+});
+
+app.get('/underscore-calculator/calculate/:op', function(req, res) {
+	var theRegisters = calculator.evaluate(req.params.op,req.query.input);
+	var theData = JSON.stringify(theRegisters);
+	res.render('display', { data : theData });
+});
+
 app.get('/calculate/:op', function(req, res) {
 	var theRegisters = calculator.evaluate(req.params.op,req.query.input);
 	var theData = JSON.stringify(theRegisters);
