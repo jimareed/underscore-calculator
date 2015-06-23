@@ -106,15 +106,16 @@ display();
 
 
 function display() {
-	var registers = JSON.parse('{{{ data }}}');
+	var calculator = JSON.parse('{{{ data }}}');
+  var registers = calculator.registers;
 
-	for (var i = 0; i < registers.length-2; i += 1) {
+	for (var i = 0; i < registers.length; i += 1) {
 		for (j = 0; j < 1; j += 1) {
 		  	document.getElementById("register-" + i).value = "";
 		}
 	}
 
-	for (var i = 0; i < registers.length-2; i += 1) {
+	for (var i = 0; i < registers.length; i += 1) {
 		var j = 0;
 		for (var key in registers[i]) {
 		  	document.getElementById("register-" + i).value = registers[i][key];

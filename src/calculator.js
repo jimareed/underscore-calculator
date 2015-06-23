@@ -1,4 +1,5 @@
 var _ = require("underscore");
+var store = require('./store');
 
 var ds = [];
 var registers = [];
@@ -65,7 +66,6 @@ function evaluateOperation(operation,value) {
       ds[0] = temp;
     }
 
-
     for (var i = 0; i < 4; i += 1) {
       if (typeof ds[i][0] == "object") {
         for (var key in ds[i]) break;
@@ -77,46 +77,35 @@ function evaluateOperation(operation,value) {
       }
     }
 
-    registers[4] = [1,1,1,1];
-    registers[5] = [1,1,1,1];
+    var calculator = { "row":1 , "column":1 , "registers":registers };
 
-    for (var i = 0; i < 4; i += 1) {
-      registers[5][i] = ds[i].length;
-    }
-
-    return registers;
+    return calculator;
   }
-
 
 module.exports = {
 
   recall: function(name) {
-    console.log("recall " + name);
-    var input = JSON.stringify(response);
-    var theRegisters = evaluateOperation("enter",input);
+    var input = JSON.stringify(store.recall(name));
 
-    return theRegisters;
+    return evaluateOperation("enter",input);
   },
 
   store: function(name) {
-    console.log("store " + name);
-    var theRegisters = evaluateOperation("","");
+    store.store(name,ds[0]);
 
-    return theRegisters;
+    return evaluateOperation("","");
   },
 
   record: function(name) {
     console.log("record " + name);
-    var theRegisters = evaluateOperation("","");
 
-    return theRegisters;
+    return evaluateOperation("","");
   },
 
   play: function(name) {
     console.log("play " + name);
-    var theRegisters = evaluateOperation("","");
 
-    return theRegisters;
+    return evaluateOperation("","");
   },
 
   evaluate: function(operation,value) {
