@@ -42,6 +42,18 @@ function recordSteps(step,operation,value) {
     }
   }
 
+  if (step == "play") {
+    return;
+  }
+
+  if (step == "recall" && operation != "default") {
+    return;
+  }
+
+  if (step == "getresponse") {
+    return;
+  }
+
   if (calculator.recording.on && step != "record") {
     calculator.recording.steps[calculator.recording.steps.length] = { "step":step,"operation":operation,"value":value};
   }
@@ -49,11 +61,11 @@ function recordSteps(step,operation,value) {
 
 function playRecording(name) {
   for (var i = 0; i < calculator.recording.steps.length; i+=1) {
-    console.log("playback:" + calculator.recording.steps[i].step + "," + calculator.recording.steps[i].operation + "," + calculator.recording.steps[i].value);
+    evaluateFunc(calculator.recording.steps[i].step, calculator.recording.steps[i].operation, calculator.recording.steps[i].value);
   }
 }
 
-function evaluateOperation(operation,value) {
+function calculateOperation(operation,value) {
 
     if (value == "") {
       if (operation == "enter") {
@@ -165,22 +177,30 @@ function evaluateOperation(operation,value) {
     return calculator;
   }
 
-module.exports = {
+function evaluateFunc(func, name, value) {
 
-  getresponse: function(name) {
-    if (calculator.requestInProgress) {
-      calculator.getResponseCount += 1;
-    } else {
-      evaluateOperation("enter", response);
+  if (func == 'calculate') {
+      calculateOperation(name,value);
+  }
+
+  if (func == 'play') {
+    if (!calculator.recording.on) {
+      playRecording(name);
     }
 
-    return calculator;
-  },
+    calculateOperation("","");
+  }
 
-  recall: function(name) {
+  if (func == 'record') {
+    calculateOperation("","");
+  }
 
-    recordSteps("recall", name, "");
-    
+  if (func == 'store') {
+    store.store(name,ds[0]);
+    calculateOperation("","");
+  }
+
+  if (func == 'recall') {
     var input = JSON.stringify(store.recall(name, function(err,res) {
       if (err) {
         response = "recall error";
@@ -191,42 +211,33 @@ module.exports = {
     }));
 
     if (name == 'default') {
-      return evaluateOperation("enter",input);
+      return calculateOperation("enter",input);
     } 
 
     calculator.requestInProgress = true;
     calculator.getResponseCount = 0;
 
-    return calculator;
-  },
+  }
 
-  store: function(name) {
-
-    recordSteps("store", name, "");
-
-    store.store(name,ds[0]);
-
-    return evaluateOperation("","");
-  },
-
-  record: function(name) {
-    recordSteps("record", name, "");
-
-    return evaluateOperation("","");
-  },
-
-  play: function(name) {
-    if (!calculator.recording.on) {
-      playRecording(name);
+  if (func == 'getresponse') {
+    if (calculator.requestInProgress) {
+      calculator.getResponseCount += 1;
+    } else {
+      calculateOperation("enter", response);
     }
+  }
 
-    return evaluateOperation("","");
-  },
+  return calculator;
 
-  evaluate: function(operation,value) {
-    recordSteps("evaluate", operation, value);
+}
 
-    return evaluateOperation(operation,value);
+module.exports = {
+
+  evaluate: function(func, name, value) {
+
+    recordSteps(func, name, value);
+
+    return evaluateFunc(func, name, value);
   }
 
 };
