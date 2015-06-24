@@ -17,7 +17,13 @@
   <td><input id="register-0" type="button" class="registers" value=""/></td>
   </tr>
   <tr>
-  <td><input id="input" class="buttons" value=""/></td>
+  <td>
+  <table width="100%">
+  <tr><td>
+    <input id="input" class="buttons" value=""/>
+  </td><td width="25"><img src="/images/add.png"/ width="25" height="25"></td></tr>
+  </table>
+  </td>
   </tr>
   </table>
   </td></tr>
@@ -26,37 +32,37 @@
     <tr>
       <td width="100"><input type="button" name="play" class="buttons" value="play" onClick="calcrecord('play')"/></td>
       <td width="100"><input id="record" type="button" name="record" class="buttons" value="record" onClick="calcrecord('record')"/></td>
-      <td width="100"><input type="button" name="clear" class="buttons" value="clear" onClick="calc('clear')"/></td>
-      <td width="100"><input type="button" name="r-down" class="buttons" value="r-down" onClick="calc('r-down')"/></td>
       <td width="100"><input type="button" name="x-y" class="buttons" value="x-y" onClick="calc('x-y')"/></td>
+      <td width="100"><input type="button" name="clear" class="buttons" value="clear" onClick="calc('clear')"/></td>
+      <td width="100"><input type="button" name="get-rec" class="buttons" value="get-rec" onClick="calc('get-rec')"/></td>
     </tr>
     <tr>
       <td><input type="button" name="recall" class="buttons" value="recall" onClick="calcstore('recall')"/></td>
       <td><input type="button" name="store" class="buttons" value="store" onClick="calcstore('store')"/></td>
-      <td><input type="button" name="swap" class="buttons" value="swap" onClick="calc('swap')"/></td>
+      <td><input type="button" name="r-down" class="buttons" value="r-down" onClick="calc('r-down')"/></td>
       <td><input type="button" name="up" class="buttons" value="up" onClick="calc('up')"/></td>
-      <td><input type="button" name="rec" class="buttons" value="record" onClick="calc('record')"/></td>
+      <td><input type="button" name="set-rec" class="buttons" value="set-rec" onClick="calc('set-rec')"/></td>
     </tr>
     <tr>
-      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
-      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="min" class="buttons" value="min" onClick="calc('min')"/></td>
+      <td><input type="button" name="mix" class="buttons" value="max" onClick="calc('max')"/></td>
       <td><input type="button" name="left" class="buttons" value="left" onClick="calc('left')"/></td>
       <td><input type="button" name="down" class="buttons" value="down" onClick="calc('down')"/></td>
       <td><input type="button" name="right" class="buttons" value="right" onClick="calc('right')"/></td>
     </tr>
     <tr>
       <td><input type="button" name="size" class="buttons" value="size" onClick="calc('size')"/></td>
-      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
-      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
-      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
-      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="first" class="buttons" value="first" onClick="calc('first')"/></td>
+      <td><input type="button" name="last" class="buttons" value="last" onClick="calc('last')"/></td>
+      <td><input type="button" name="initial" class="buttons" value="initial" onClick="calc('initial')"/></td>
+      <td><input type="button" name="rest" class="buttons" value="rest" onClick="calc('rest')"/></td>
     </tr>
     <tr>
-      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
-      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
-      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
-      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
-      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="sort" class="buttons" value="sort" onClick="calc('sort')"/></td>
+      <td><input type="button" name="union" class="buttons" value="union" onClick="calc('union')"/></td>
+      <td><input type="button" name="intersec" class="buttons" value="intersec" onClick="calc('intersection')"/></td>
+      <td><input type="button" name="diff" class="buttons" value="diff" onClick="calc('difference')"/></td>
+      <td><input type="button" name="filter" class="buttons" value="filter" onClick="calc('filter')"/></td>
     </tr>
   </table>
 	<table>
@@ -76,7 +82,7 @@
       <td width="100"><input type="button" class="buttons" name="/" value="/" onClick="calc('divide')"/></td>
     </tr>
     <tr>
-      <td><input type="button" class="buttons" name="{ }" value="{ }" onClick="add('{}')"/></td>
+      <td><input type="button" class="buttons" name="" value="" onClick="add('')"/></td>
       <td><input type="button" class="buttons" name="4" value="4" onClick="add('4')"/></td>
       <td><input type="button" class="buttons" name="5" value="5" onClick="add('5')"/></td>
       <td><input type="button" class="buttons" name="6" value="6" onClick="add('6')"/></td>
