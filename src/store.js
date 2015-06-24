@@ -9,7 +9,7 @@ var defaultData = [{ country:"China-t" , population:1343 } ,
 
 module.exports = {
 
-  recall: function(name) {
+  recall: function(name,callback) {
     console.log("recall " + name);
 
     if (name == 'default') {
@@ -19,9 +19,9 @@ module.exports = {
                       .get('/simple-csv-store/data/' + name)
                       .end(function(err, res) {
                         if (err) {
-                          console.log("recall error");
+                          callback(true, []);
                         } else {
-                          console.log(res.body);
+                          callback(false, res.body);
                         }
                       });
     }
@@ -36,6 +36,5 @@ module.exports = {
       data = value;
     }
   }
-
 
 };

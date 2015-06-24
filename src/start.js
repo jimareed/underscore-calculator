@@ -27,6 +27,11 @@ app.get('/underscore-calculator/recall/:name', function(req, res) {
 	res.render('display', { data : theData });
 });
 
+app.get('/underscore-calculator/getresponse/:name', function(req, res) {
+	var theData = JSON.stringify(calculator.getresponse(req.params.name));
+	res.render('display', { data : theData });
+});
+
 app.get('/underscore-calculator/store/:name', function(req, res) {
 	var theData = JSON.stringify(calculator.store(req.params.name));
 	res.render('display', { data : theData });
