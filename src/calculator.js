@@ -4,6 +4,7 @@ var store = require('./store');
 var ds = [];
 var registers = [];
 var response = [];
+var recording = { "on":false, "steps":[]};
 
 ds[0] = [];
 ds[1] = [];
@@ -15,7 +16,8 @@ var calculator = {  "row":1 ,
                     "columnCount":1, 
                     "requestInProgress":false , 
                     "getResponseCount":0,
-                    "registers":registers };
+                    "registers":registers,
+                    "recording":recording };
 
 function resetXRegister() {
   calculator.row = 1;
@@ -27,6 +29,27 @@ function resetXRegister() {
     for (var key in ds[0][0]) {
       calculator.columnCount += 1;
     }
+  }
+}
+
+function recordSteps(step,operation,value) {
+
+  if (step == "record") {
+    calculator.recording.on = !calculator.recording.on;
+
+    if (calculator.recording.on) {
+      calculator.recording.steps = [];
+    }
+  }
+
+  if (calculator.recording.on && step != "record") {
+    calculator.recording.steps[calculator.recording.steps.length] = { "step":step,"operation":operation,"value":value};
+  }
+}
+
+function playRecording(name) {
+  for (var i = 0; i < calculator.recording.steps.length; i+=1) {
+    console.log("playback:" + calculator.recording.steps[i].step + "," + calculator.recording.steps[i].operation + "," + calculator.recording.steps[i].value);
   }
 }
 
@@ -112,13 +135,27 @@ function evaluateOperation(operation,value) {
     }
 
     for (var i = 0; i < 4; i += 1) {
-      if (typeof ds[i][0] == "object") {
-        for (var key in ds[i]) break;
+      var row = 0;
+      var col = 0;
+
+      if (i == 0) {
+        row = calculator.row-1;
+        col = calculator.column-1;
+      }
+
+      if (typeof ds[i][row] == "object") {
+        var j = 0;
+        for (var key in ds[i][row]) {
+          if (j == col) {
+            break;
+          }
+          j += 1;
+        } 
         if (key != null) {
-          registers[i] = ds[i][key];
+          registers[i] = ds[i][row][key];
         }
       } else {
-        registers[i] = [ds[i][0]];
+        registers[i] = ds[i][row];
       }
     }
 
@@ -141,6 +178,9 @@ module.exports = {
   },
 
   recall: function(name) {
+
+    recordSteps("recall", name, "");
+    
     var input = JSON.stringify(store.recall(name, function(err,res) {
       if (err) {
         response = "recall error";
@@ -161,24 +201,30 @@ module.exports = {
   },
 
   store: function(name) {
+
+    recordSteps("store", name, "");
+
     store.store(name,ds[0]);
 
     return evaluateOperation("","");
   },
 
   record: function(name) {
-    console.log("record " + name);
+    recordSteps("record", name, "");
 
     return evaluateOperation("","");
   },
 
   play: function(name) {
-    console.log("play " + name);
+    if (!calculator.recording.on) {
+      playRecording(name);
+    }
 
     return evaluateOperation("","");
   },
 
   evaluate: function(operation,value) {
+    recordSteps("evaluate", operation, value);
 
     return evaluateOperation(operation,value);
   }

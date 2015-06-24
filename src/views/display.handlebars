@@ -25,7 +25,7 @@
   <table>
     <tr>
       <td width="100"><input type="button" name="play" class="buttons" value="play" onClick="calcrecord('play')"/></td>
-      <td width="100"><input type="button" name="record" class="buttons" value="record" onClick="calcrecord('record')"/></td>
+      <td width="100"><input id="record" type="button" name="record" class="buttons" value="record" onClick="calcrecord('record')"/></td>
       <td width="100"><input type="button" name="clear" class="buttons" value="clear" onClick="calc('clear')"/></td>
       <td width="100"><input type="button" name="r-down" class="buttons" value="r-down" onClick="calc('r-down')"/></td>
       <td width="100"><input type="button" name="x-y" class="buttons" value="x-y" onClick="calc('x-y')"/></td>
@@ -128,14 +128,11 @@ function display() {
     }
 
     for (var i = 0; i < registers.length; i += 1) {
-      var j = 0;
-      for (var key in registers[i]) {
-          document.getElementById("register-" + i).value = registers[i][key];
-          j += 1;
-          if (j == 1) {
-            break;
-          }
-      }
+      document.getElementById("register-" + i).value = registers[i];
+    }
+
+    if (calculator.recording.on) {
+      document.getElementById("record").value = "record *";
     }
   }
 
