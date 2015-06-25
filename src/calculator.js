@@ -19,6 +19,18 @@ var calculator = {  "row":1 ,
                     "registers":registers,
                     "recording":recording };
 
+function getKey(col) {
+  var i = 1;
+  for (var key in ds[0][0]) {
+    if (i == col) {
+      return key;
+    }
+    i += 1;
+  }
+
+  return "";  
+}
+
 function resetXRegister() {
   calculator.row = 1;
   calculator.column = 1;
@@ -67,6 +79,10 @@ function playRecording(name) {
 
 function calculateOperation(operation,value) {
 
+    if (typeof value == 'undefined') {
+      value = "";
+    }
+
     if (value == "") {
       if (operation == "enter") {
         ds[3] = ds[2];
@@ -90,6 +106,122 @@ function calculateOperation(operation,value) {
       ds[0] = _.uniq(ds[0]);
       resetXRegister();
     }
+
+    if (operation == "pluck") {
+      if (typeof ds[0][0] == "object") {
+        ds[0] = _.pluck(ds[0], getKey(calculator.column));
+        resetXRegister();
+      }
+    }
+
+    if (operation == "filter") {
+      if (typeof ds[0][0] == "object") {
+        var key = getKey(calculator.column);
+        var keyValue = ds[0][calculator.row-1][key];
+        var where = {};
+        where[key] = keyValue;
+        ds[0] = _.where(ds[0], where);
+        resetXRegister();
+      }
+    }
+
+    if (operation == "sort") {
+      if (typeof ds[0][0] == "object") {
+        ds[0] = _.sortBy(ds[0], getKey(calculator.column));
+      } else {
+        ds[0] = _.sortBy(ds[0]);
+      }
+      resetXRegister();
+    }
+
+    if (operation == "union") {
+      ds[0] = _.union(ds[0],ds[1]);
+      ds[1] = ds[2]
+      ds[2] = ds[3];
+      ds[3] = [];
+      resetXRegister();
+    }
+
+    if (operation == "intersection") {
+      ds[0] = _.intersection(ds[0],ds[1]);
+      ds[1] = ds[2]
+      ds[2] = ds[3];
+      ds[3] = [];
+      resetXRegister();
+    }
+
+    if (operation == "difference") {
+      ds[0] = _.difference(ds[0],ds[1]);
+      ds[1] = ds[2]
+      ds[2] = ds[3];
+      ds[3] = [];
+      resetXRegister();
+    }
+
+    if (operation == "min") {
+      ds[0] = [_.min(ds[0])];
+      resetXRegister();
+    }
+
+    if (operation == "max") {
+      ds[0] = [_.max(ds[0])];
+      resetXRegister();
+    }
+
+    if (operation == "first") {
+      ds[0] = [_.first(ds[0])];
+      resetXRegister();
+    }
+
+    if (operation == "last") {
+      ds[0] = [_.last(ds[0])];
+      resetXRegister();
+    }
+
+    if (operation == "initial") {
+      ds[0] = _.initial(ds[0]);
+      resetXRegister();
+    }
+
+    if (operation == "rest") {
+      ds[0] = _.rest(ds[0]);
+      resetXRegister();
+    }
+
+    if (operation == "get-rec") {
+      ds[3] = ds[2];
+      ds[2] = ds[1];
+      ds[1] = ds[0];
+      ds[0] = calculator.recording.steps;
+      resetXRegister();
+    }
+
+    if (operation == "set-rec") {
+      var badFormat = false;
+
+      if (typeof ds[0][0] != "object") {
+        badFormat = true;
+      }
+
+      var i = 0;
+      for (var key in ds[0][0]) {
+        if (i == 0 && key != "step") {
+          badFormat = true;
+        } 
+        if (i == 1 && key != "operation") {
+          badFormat = true;
+        } 
+        if (i == 2 && key != "value") {
+          badFormat = true;
+        } 
+        i += 1;
+      }
+
+      if (!badFormat) {
+        calculator.recording.steps = ds[0];
+      }
+    }
+
 
     if (operation == "size") {
       var size =  _.size(ds[0]);
