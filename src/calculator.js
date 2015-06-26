@@ -14,10 +14,12 @@ ds[3] = [];
 var calculator = {  "row":1 , 
                     "column":1 ,
                     "columnCount":1, 
-                    "requestInProgress":false , 
+                    "requestInProgress":false ,
+                    "requestInProgressType":"", 
                     "getResponseCount":0,
                     "registers":registers,
-                    "recording":recording };
+                    "recording":recording,
+                    "storeDatasets":[] };
 
 function getKey(col) {
   var i = 1;
@@ -395,15 +397,35 @@ function evaluateFunc(func, name, value) {
     } 
 
     calculator.requestInProgress = true;
+    calculator.requestInProgressType = "recall";
     calculator.getResponseCount = 0;
 
+  }
+
+  if (func == 'list-store') {
+    var input = JSON.stringify(store.list(function(err,res) {
+      if (err) {
+        calculator.storeDatasets = ["list-store error"];
+      } else {
+        calculator.storeDatasets = [JSON.stringify(res)];
+      }
+      calculator.requestInProgress = false;
+    }));
+
+    calculator.requestInProgress = true;
+    calculator.requestInProgressType = "list-store";
+    calculator.getResponseCount = 0;
   }
 
   if (func == 'getresponse') {
     if (calculator.requestInProgress) {
       calculator.getResponseCount += 1;
     } else {
-      calculateOperation("enter", response);
+      if (calculator.requestInProgressType != 'list-store') {
+        calculateOperation("enter", response);
+      } else {
+        calculateOperation("enter", "");
+      }
     }
   }
 

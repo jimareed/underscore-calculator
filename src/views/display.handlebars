@@ -1,5 +1,4 @@
 <form id="calculator" onload="myFunction()">
-  <br/>
   <table border="1">
   <tr><td>
   <div align="center"><b>underscore-calculator</b></div>
@@ -120,7 +119,7 @@ function display() {
     } else {
       document.getElementById("input").value = "loading...";
       setTimeout(function () {
-        var newpage = "/underscore-calculator/getresponse/default";
+        var newpage = "/underscore-calculator/getresponse/default?input=display";
         window.location.assign(newpage);
       }, 1000);
     }

@@ -1,0 +1,55 @@
+<form id="calculator" onload="myFunction()">
+  <table border="1">
+  <tr><td>
+  <div align="center"><b>store datasets</b></div>
+  <table>
+  <tr>
+  <td width="516"><input type="button" id="register-0" class="registers" value=""/></td>
+  </tr>
+  <tr>
+  <td><input id="register-1" type="button" class="registers" value=""/></td>
+  </tr>
+  <tr>
+  <td><input id="register-2" type="button" class="registers" value=""/></td>
+  </tr>
+  <tr>
+  <td><input id="register-3" type="button" class="registers" value=""/></td>
+  </tr>
+  <tr>
+  <td>
+  <table width="100%">
+  <tr><td>
+  </td><td width="25"><img src="/images/add.png"/ width="25" height="25"></td></tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+  </td></tr>
+  </table>
+</form>
+
+<script>
+display();
+
+
+function display() {
+	var calculator = JSON.parse('{{{ data }}}');
+
+  if (calculator.requestInProgress) {
+    if (calculator.getResponseCount >= 30) {
+      document.getElementById("register-0").value = "recall failed";
+    } else {
+      document.getElementById("register-0").value = "loading...";
+      setTimeout(function () {
+        var newpage = "/underscore-calculator/getresponse/default?input=display-list-store";
+        window.location.assign(newpage);
+      }, 1000);
+    }
+  } else {
+    document.getElementById("register-0").value = "result complete";
+  }
+
+}
+
+
+</script>

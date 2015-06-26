@@ -29,6 +29,22 @@ module.exports = {
     return defaultData;
   },
 
+  list: function(callback) {
+    console.log("list ");
+
+    var result = request
+                    .get('/simple-csv-store/list')
+                    .end(function(err, res) {
+                      if (err) {
+                        callback(true, []);
+                      } else {
+                        callback(false, res.body);
+                      }
+                    });
+
+    return result;
+  },
+
   store: function(name, value) {
     console.log("store " + name);
 

@@ -19,7 +19,16 @@ app.get('/underscore-calculator', function(req, res) {
 
 app.get('/underscore-calculator/:func/:op', function(req, res) {
 	var theData = JSON.stringify(calculator.evaluate(req.params.func, req.params.op,req.query.input));
-	res.render('display', { data : theData });
+	var view = 'display';
+	if (req.params.func == 'getresponse') {
+		view = req.query.input;
+	}
+	res.render(view, { data : theData });
+});
+
+app.get('/underscore-calculator/display-list-store', function(req, res) {
+	var theData = JSON.stringify(calculator.evaluate("list-store", "",""));
+	res.render('display-list-store', { data : theData });
 });
 
 app.use(express.static('public'));
