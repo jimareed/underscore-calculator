@@ -107,6 +107,54 @@ function calculateOperation(operation,value) {
       resetXRegister();
     }
 
+    if (operation == "add") {
+      if (ds[0].length == 1 && ds[1].length == 1 && Number(ds[0][0]) != 'NaN' && Number(ds[1][0]) != 'NaN') {
+        ds[0][0]= [Number(ds[1][0]) + Number(ds[0][0])];
+      } else {
+        ds[0]= ds[1] + ds[0];
+      }
+      ds[1] = ds[2];
+      ds[2] = ds[3];
+      ds[3] = [];      
+      resetXRegister();
+    }
+
+    if (operation == "subtract") {
+      if (ds[0].length == 1 && ds[1].length == 1 && Number(ds[0][0]) != 'NaN' && Number(ds[1][0]) != 'NaN') {
+        ds[0][0]= [Number(ds[1][0]) - Number(ds[0][0])];
+      } else {
+        ds[0]= ds[1] - ds[0];
+      }
+      ds[1] = ds[2];
+      ds[2] = ds[3];
+      ds[3] = [];      
+      resetXRegister();
+    }
+
+    if (operation == "multipy") {
+      if (ds[0].length == 1 && ds[1].length == 1 && Number(ds[0][0]) != 'NaN' && Number(ds[1][0]) != 'NaN') {
+        ds[0][0]= [Number(ds[1][0]) * Number(ds[0][0])];
+      } else {
+        ds[0]= ds[1] * ds[0];
+      }
+      ds[1] = ds[2];
+      ds[2] = ds[3];
+      ds[3] = [];      
+      resetXRegister();
+    }
+
+    if (operation == "divide") {
+      if (ds[0].length == 1 && ds[1].length == 1 && Number(ds[0][0]) != 'NaN' && Number(ds[1][0]) != 'NaN') {
+        ds[0][0]= [Number(ds[1][0]) / Number(ds[0][0])];
+      } else {
+        ds[0]= ds[1] / ds[0];
+      }
+      ds[1] = ds[2];
+      ds[2] = ds[3];
+      ds[3] = [];      
+      resetXRegister();
+    }
+
     if (operation == "pluck") {
       if (typeof ds[0][0] == "object") {
         ds[0] = _.pluck(ds[0], getKey(calculator.column));
