@@ -405,9 +405,9 @@ function evaluateFunc(func, name, value) {
   if (func == 'list-store') {
     var input = JSON.stringify(store.list(function(err,res) {
       if (err) {
-        calculator.storeDatasets = ["list-store error"];
+        calculator.storeDatasets = "list-store error";
       } else {
-        calculator.storeDatasets = [JSON.stringify(res)];
+        calculator.storeDatasets = JSON.stringify(res);
       }
       calculator.requestInProgress = false;
     }));
