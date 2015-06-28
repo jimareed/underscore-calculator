@@ -15,7 +15,7 @@ var calculator = {  "row":1 ,
                     "column":1 ,
                     "columnCount":1, 
                     "requestInProgress":false ,
-                    "requestInProgressType":"", 
+                    "view":"", 
                     "getResponseCount":0,
                     "registers":registers,
                     "recording":recording,
@@ -328,6 +328,10 @@ function calculateOperation(operation,value) {
       resetXRegister();
     }
 
+    if (operation == 'noop') {
+
+    }
+
     for (var i = 0; i < 4; i += 1) {
       var row = 0;
       var col = 0;
@@ -355,6 +359,7 @@ function calculateOperation(operation,value) {
 
     calculator.requestInProgress = false;
     calculator.registers = registers;
+    calculator.view = 'default';
 
     return calculator;
   }
@@ -396,35 +401,48 @@ function evaluateFunc(func, name, value) {
       return calculateOperation("enter",input);
     } 
 
+    calculator.view = 'default';
     calculator.requestInProgress = true;
-    calculator.requestInProgressType = "recall";
     calculator.getResponseCount = 0;
 
   }
 
-  if (func == 'list-store') {
-    var input = JSON.stringify(store.list(function(err,res) {
-      if (err) {
-        calculator.storeDatasets = "list-store error";
-      } else {
-        calculator.storeDatasets = JSON.stringify(res);
-      }
-      calculator.requestInProgress = false;
-    }));
+  if (func == 'showview') {
 
-    calculator.requestInProgress = true;
-    calculator.requestInProgressType = "list-store";
-    calculator.getResponseCount = 0;
+    if (name == 'selectdataset') {
+/*
+      var input = JSON.stringify(store.list(function(err,res) {
+        if (err) {
+          calculator.storeDatasets = "select dataset error";
+        } else {
+          calculator.storeDatasets = JSON.stringify(res);
+        }
+        calculator.requestInProgress = false;
+      }));
+
+      calculator.requestInProgress = true;
+      calculator.view = 'selectdataset';
+      calculator.getResponseCount = 0;
+      */
+
+      calculateOperation("noop", "");
+      calculator.view = 'selectdataset';      
+
+
+    } else {
+      calculator.view = 'default';      
+      calculateOperation("noop", "");
+    }
   }
 
   if (func == 'getresponse') {
     if (calculator.requestInProgress) {
       calculator.getResponseCount += 1;
     } else {
-      if (calculator.requestInProgressType != 'list-store') {
-        calculateOperation("enter", response);
+      if (calculator.view == 'selectdataset') {
+        calculateOperation("noop", "");
       } else {
-        calculateOperation("enter", "");
+        calculateOperation("enter", response);
       }
     }
   }

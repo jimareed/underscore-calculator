@@ -1,5 +1,5 @@
 <div class="calculator">
-<form id="calculator" onload="display()">
+<form id="calculator">
   <table>
   <tr><td>
    <table>
@@ -28,7 +28,7 @@
   <table width="100%">
   <tr><td>
     <input id="input" class="inputregister" value=""/>
-  </td><td width="25"><a href="/underscore-calculator/display-list-store"><img src="/images/add.png"/ width="25" height="25"></a></td></tr>
+  </td><td width="25"><a href="/underscore-calculator/showview/selectdataset"><img src="/images/add.png"/ width="25" height="25"></a></td></tr>
   </table>
   </td>
   </tr>
@@ -146,45 +146,171 @@
   </table>
 </form>
 
+<form id="calculatorDatasets">
+  <table>
+  <tr><td>
+   <table>
+  <tr><td>
+  <table>
+  <tr><td>
+  <div align="left"><b><i>underscore-calculator - select dataset</i></b></div>
+  <table border="1">
+  <tr>
+  <td>
+  <table>
+  <tr>
+  <td width="516"><input type="button" id="dataset-0" class="registers" onClick="selectDataset('0')" value=""/></td>
+  </tr>
+  <tr>
+  <td><input id="dataset-1" type="button" class="registers" onClick="selectDataset('1')" value=""/></td>
+  </tr>
+  <tr>
+  <td><input id="dataset-2" type="button" class="registers" onClick="selectDataset('2')" value=""/></td>
+  </tr>
+  <tr>
+  <td><input id="dataset-3" type="button" class="registers" onClick="selectDataset('3')" value=""/></td>
+  </tr>
+  <tr>
+  <td><input id="dataset-4" type="button" class="registers" onClick="selectDataset('4')" value=""/></td>
+  </tr>
+  <tr>
+  <td><input id="dataset-5" type="button" class="registers" onClick="selectDataset('5')" value=""/></td>
+  </tr>
+  <tr>
+  <td><input id="dataset-6" type="button" class="registers" onClick="selectDataset('6')" value=""/></td>
+  </tr>
+  <tr>
+  <td><input id="dataset-7" type="button" class="registers" onClick="selectDataset('7')" value=""/></td>
+  </tr>
+  <tr>
+  <td><input id="dataset-8" type="button" class="registers" onClick="selectDataset('8')" value=""/></td>
+  </tr>
+  <tr>
+  <td><input id="dataset-9" type="button" class="registers" onClick="selectDataset('9')" value=""/></td>
+  </tr>
+  </table>
+  </td></tr>
+  </table>  
+  </td></tr>
+  </table>
+  </td>
+  <td>
+    <table>
+    <tr>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+    </tr>
+    <tr>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+    </tr>
+    <tr>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+    </tr>
+    <tr>
+      <td width="100"><input type="button" name="up" class="buttons" value="up" onClick="calc('up')"/></td>
+      <td width="100"><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+    </tr>
+    <tr>
+      <td><input type="button" name="down" class="buttons" value="down" onClick="calc('down')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calcrecord('')"/></td>
+    </tr>
+    <tr>
+      <td><input type="button" name="new" class="buttons" value="new" onClick="calc('new')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+    </tr>
+    <tr>
+      <td><input type="button" name="return" class="buttons" value="return" onClick="showView('default')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calcrecord('')"/></td>
+    </tr>
+    <tr>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+    </tr>
+    <tr>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+    </tr>
+    <tr>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+    </tr>
+    <tr>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+      <td><input type="button" name="" class="buttons" value="" onClick="calc('')"/></td>
+    </tr>
+    </table>
+  </td>
+  </tr>
+  </table>
+  </td></tr>
+  </table>
+</form>
+
+
 <script>
 display();
 
 
 function display() {
+  
 	var calculator = JSON.parse('{{{ data }}}');
 
-  if (calculator.requestInProgress) {
-    if (calculator.getResponseCount >= 30) {
-      document.getElementById("input").value = "recall failed";
-    } else {
-      document.getElementById("input").value = "loading...";
-      setTimeout(function () {
-        var newpage = "/underscore-calculator/getresponse/default?input=display";
-        window.location.assign(newpage);
-      }, 1000);
-    }
-  } else {
-    var registers = calculator.registers;
+  if (calculator.view == 'selectdataset') {
+    document.getElementById("calculator").style.display="none";
+    document.getElementById("calculatorDatasets").style.display="block";
 
-    for (var i = 0; i < registers.length; i += 1) {
-      for (j = 0; j < 1; j += 1) {
-          document.getElementById("register-" + i).value = "";
+    document.getElementById("dataset-0").value="sample";
+
+  } else {
+    document.getElementById("calculator").style.display="block";
+    document.getElementById("calculatorDatasets").style.display="none";
+
+    if (calculator.requestInProgress) {
+      if (calculator.getResponseCount >= 30) {
+        document.getElementById("input").value = "recall failed";
+      } else {
+        document.getElementById("input").value = "loading...";
+        setTimeout(function () {
+          var newpage = "/underscore-calculator/getresponse/default?input=display";
+          window.location.assign(newpage);
+        }, 1000);
+      }
+    } else {
+      var registers = calculator.registers;
+
+      for (var i = 0; i < registers.length; i += 1) {
+        for (j = 0; j < 1; j += 1) {
+            document.getElementById("register-" + i).value = "";
+        }
+      }
+
+      for (var i = 0; i < registers.length; i += 1) {
+        document.getElementById("register-" + i).value = registers[i];
+      }
+
+      if (calculator.recording.on) {
+        document.getElementById("record").value = "record *";
       }
     }
-
-    for (var i = 0; i < registers.length; i += 1) {
-      document.getElementById("register-" + i).value = registers[i];
-    }
-
-    if (calculator.recording.on) {
-      document.getElementById("record").value = "record *";
-    }
   }
+
 
 }
 
 function calc(operation) {
     var newpage = "/underscore-calculator/calculate/" + operation + "?input=" + document.getElementById("input").value;
+    window.location.assign(newpage);
+}
+
+function selectDataset(number) {
+    var newpage = "/underscore-calculator/recall/" + document.getElementById("dataset-" + number).value;
+    window.location.assign(newpage);
+}
+
+function showView(view) {
+    var newpage = "/underscore-calculator/showview/" + view;
     window.location.assign(newpage);
 }
 
