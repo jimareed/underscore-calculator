@@ -1,6 +1,6 @@
 # underscore-calculator
 
-under development.
+RPN calculator that supports calling underscore functions on datasets.
 
 ![Alt text](/doc/calculator.png "Calculator")
 
