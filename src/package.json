@@ -8,6 +8,7 @@
     "express": "*",
     "express-handlebars": "*",
     "supertest": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "connect-busboy": "*"
   }
 }
