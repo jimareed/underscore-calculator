@@ -33,7 +33,7 @@ app.use(express.static('public'));
 // file upload route
 //
 app.use(busboy());
-app.route('/upload')
+app.route('/underscore-calculator/upload')
     .post(function (req, res, next) {
 
         req.pipe(req.busboy);
